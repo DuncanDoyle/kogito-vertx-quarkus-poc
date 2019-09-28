@@ -1,0 +1,21 @@
+<kmodule xmlns="http://www.drools.org/xsd/kmodule" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    
+    <kbase name="canDrinkRuleUnitKB" packages="org.kie.kogito.poc.canDrinkRuleUnit">
+        <ksession name="canDrinkRuleUnit" default="true"/>
+    </kbase>
+
+    <kbase name="filterDrinksByIngredientsRuleUnitKB" packages="org.kie.kogito.poc.filterDrinksByIngredientsRuleUnit">
+        <ksession name="filterDrinksByIngredientsRuleUnit" default="false"/>
+    </kbase>
+    <kbase name="filterDrinksByCanDrinkRuleUnitKB" packages="org.kie.kogito.poc.filterDrinksByCanDrinkRuleUnit">
+        <ksession name="filterDrinksByCanDrinkRuleUnit" default="false"/>
+    </kbase>
+    
+    <!--
+    <kbase name="canDrinkUnitKB" packages="org.kie.kogito.poc.rules">
+        <ksession name="CanDrinkUnit" default="false"/>
+    </kbase>
+    -->
+    
+</kmodule>

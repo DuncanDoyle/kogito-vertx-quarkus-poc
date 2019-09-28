@@ -1,0 +1,23 @@
+package org.kie.kogito.poc.rules;
+unit FilterDrinksByCanDrinkUnit;
+
+import org.kie.kogito.poc.model.Person;
+import org.kie.kogito.poc.model.Drink;
+
+rule "Filter Adult drinks"
+when
+    Person(canDrink == false) from persons
+    $d: Drink(isContainsAlcohol == true) from drinks
+then
+    delete($d);
+end
+
+query FindFilteredDrinks
+    drink: Drink() from drinks
+end
+
+/*
+query FindFilteredDrinksOOPath
+    /drinks
+end
+*/

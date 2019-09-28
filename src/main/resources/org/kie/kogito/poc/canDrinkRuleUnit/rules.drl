@@ -1,0 +1,23 @@
+package org.kie.kogito.poc.rules;
+unit CanDrinkUnit;
+
+
+import org.kie.kogito.poc.model.Person;
+
+rule "Can Drink"
+when
+    $p: Person(age >= 18) from persons
+then
+    modify($p) {
+        setCanDrink(true);
+    }
+end
+
+rule "Can NOT Drink"
+when
+    $p: Person(age < 18) from persons
+then
+    modify($p) {
+        setCanDrink(false);
+    } 
+end

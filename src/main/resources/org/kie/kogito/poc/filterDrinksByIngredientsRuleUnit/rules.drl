@@ -1,0 +1,31 @@
+package org.kie.kogito.poc.rules;
+unit FilterDrinksByIngredientsUnit;
+
+
+import java.lang.String;
+import org.kie.kogito.poc.model.Person;
+import org.kie.kogito.poc.model.Drink;
+import org.kie.kogito.poc.model.PreferredIngredients;
+
+rule "Filter drink preference"
+when
+    $p: PreferredIngredients() from ingredients
+    $i: String() from $p.getIngredients()
+    $d: Drink(ingredients not contains $i) from drinks
+then
+    System.out.println("Filtering drink: '" + $d.getName() + "'.");
+    System.out.println("With ingredients: ");
+    for (String nextIngredient: $d.getIngredients()) {
+        System.out.println("\t- " + nextIngredient);
+    }
+    System.out.println("\n");
+    System.out.println("It does not contain: " + $i);
+    delete($d); 
+end
+
+query FindDrinks
+    //$p: /persons[ adult ]
+    drink: Drink() from drinks
+end
+
+
