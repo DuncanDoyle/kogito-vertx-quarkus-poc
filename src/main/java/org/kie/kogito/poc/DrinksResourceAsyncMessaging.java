@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.concurrent.CompletionStage;
 import java.util.stream.Collectors;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Observes;
 import javax.inject.Inject;
@@ -37,13 +38,13 @@ import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 
 /**
- *
+ * REST Resource that uses Vert.x EventBus for asynchronous communication between this resource class and the classes that execute the RuleUnits.
  */
 @ApplicationScoped
-@Path("/drinks")
-public class DrinksResource {
+@Path("/drinksAsyncMessaging")
+public class DrinksResourceAsyncMessaging {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(DrinksResource.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(DrinksResourceAsyncMessaging.class);
 
     /*
      * We use the Vert.x EventBus to send messages asynchronously between beans.
@@ -54,6 +55,14 @@ public class DrinksResource {
 
     @Inject
     private DrinkRepository drinkRepository;
+
+
+    @PostConstruct
+    public void onStartupToo() {
+        LOGGER.info("Starting Quarkus/Kogito with PostConstruct.");
+    }
+
+
 
     // ---------------------------- Quarkus Event Observers ------------------------------------------
     // Observer Quarkus startup events.

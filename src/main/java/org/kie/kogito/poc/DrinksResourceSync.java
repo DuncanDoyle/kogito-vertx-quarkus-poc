@@ -26,7 +26,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Sync
+ * REST Resource that synchronously executes the rule units.
  */
 @ApplicationScoped
 @Path("/drinksSync")
